@@ -61,6 +61,8 @@ void loop() {
   rainbow(200);
   leds.fadeToBlackBy(255);
   delay(500);
+  ants(150, 150, 500, 50);
+  delay(500);
 }
 
 /***** SETUP *****/
@@ -221,9 +223,42 @@ void avadaKedavra(int nRounds, uint8_t volC, uint8_t harryC, uint8_t winC1, uint
   leds.fadeToBlackBy(255);
   FastLED.delay(pause * 4);
 }
-void explosion() {
 
+void explosion() {
   
+  int middle = NUM_LEDS/2;
+  for (int i = 0; i < middle; i++ ) {
+    leds[i] = CHSV(64, 100, 200);
+    FastLED.show();
+    FastLED.delay(20);
+    leds[i] = CHSV(0, 0, 0);
+   }
+   for (int i = middle; i++) {
+    
+   }
+   
+}
+
+void ants(int h, int s, int len, int del) {
+  int k = 0;
+  while(k<len) {
+    
+  for (int i = 0; i < NUM_LEDS; i+=2) {
+    leds[i] = CHSV(h,s,200);
+    leds[i+1] = CHSV(0,0,0);
+  }
+  FastLED.show();
+  FastLED.delay(del);
+  
+  for (int i = 0; i < NUM_LEDS; i+=2) {
+    leds[i] = CHSV(0,0,0);
+    leds[i+1] = CHSV(h,s,200);
+  }
+  FastLED.show();
+  FastLED.delay(del);
+  
+  k++;
+  }
 }
 
 /***** RELAY ON function *****/
